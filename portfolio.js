@@ -6,11 +6,11 @@ const portfolioProjects = [
         filterCategory: "research",
         icon: "document-text-outline",
         description: "A research paper proposing the adoption of declarativity as a security primitive, using NixOS as a case study.",
-        stats: ["22 Pages", "Research Paper"],
+        stats: ["21 Pages", "Research Paper"],
         tech: ["Security", "Infrastructure", "DevSecOps"],
         favorite: true,
         links: [
-            { icon: "document-outline", text: "PDF File", url: "https://drive.google.com/file/d/1J-9USJ7sTB8YZEWzRApa0lvytYMx3CRI/view" }
+            { icon: "document-outline", text: "PDF File", url: "https://drive.google.com/file/d/1mIOKwf1Eq7OlYQUR3-Fqu655tixUryjU/view" }
         ]
     },
     {
