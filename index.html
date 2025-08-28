@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>confect1on - Security Consultant & Developer</title>
+    <style>
+        /* Prevent FOUC - Hide content initially */
+        body:not(.loaded) {
+            visibility: hidden;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="avatar1.png" type="image/x-icon">
+</head>
+<body>
+    <main>
+        <aside class="sidebar " data-sidebar>
+            <div class="sidebar-info">
+                <figure class="avatar-box">
+                    <img src="avatar.png" alt="avatar" width="80" id="user-avatar">
+                </figure>
+
+                <div class="info-content">
+                    <h1 class="name" title="Kara">Kara</h1>
+                    <p class="title">Red Team Consultant</p>
+                </div>
+
+                <button class="info-more-btn" data-sidebar-btn>
+                    <span>Show Contacts</span>
+                    <ion-icon name="chevron-down"></ion-icon>
+                </button>
+            </div>
+
+            <div class="sidebar-info-more">
+                <div class="separator"></div>
+
+                <ul class="contacts-list">
+                    <li class="contact-item">
+                        <div class="icon-box">
+                            <ion-icon name="mail-outline"></ion-icon>
+                        </div>
+
+                        <div class="contact-info">
+                            <p class="contact-title">Email</p>
+
+                            <a href="mailto:contact@kxra.me" class="contact-link">contact@kxra.me</a>
+                        </div>
+                    </li>
+
+                    <li class="contact-item">
+                        <div class="icon-box">
+                            <ion-icon name="location-outline"></ion-icon>
+                        </div>
+
+                        <div class="contact-info">
+                            <p class="contact-title">Location</p>
+
+                            <address>United States</address>
+                        </div>
+                    </li>
+
+                    <li class="contact-item">
+                        <div class="icon-box">
+                            <ion-icon name="logo-github"></ion-icon>
+                        </div>
+
+                        <div class="contact-info">
+                            <p class="contact-title">GitHub</p>
+
+                            <a href="https://github.com/confect1ondev" class="contact-link" target="_blank">confect1ondev</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <div class="main-content">
+            <nav class="navbar">
+                <ul class="navbar-list">
+                    <li class="navbar-item"><button class="navbar-link active" data-nav-link>About</button></li>
+                    <li class="navbar-item"><button class="navbar-link" data-nav-link>Portfolio</button></li>
+                    <li class="navbar-item"><button class="navbar-link" data-nav-link>Blog</button></li>
+                </ul>
+            </nav>
+
+            <article class="about active" data-page="about">
+                <header>
+                    <h2 class="h2 article-title">About me</h2>
+                </header>
+
+                <section class="about-text">
+                    <p>I'm a red team consultant specializing in penetration testing for Fortune 500 companies. My work focuses on finding and exploiting vulnerabilities that matter, then helping teams fix them.</p>
+                    <p>Outside of work, I build and break secure, scalable systems across the stack,
+                        from cloud infrastructure to custom developer tools. I bring a deep technical range to everything I work on, with a focus on writing
+                        solid code grounded in how systems behave in the real world.</p>
+                </section>
+
+                <section class="service">
+                    <h3 class="h3 service-title">Current Focus</h3>
+
+                    <ul class="service-list">
+                        <li class="service-item">
+                            <div class="service-icon-box">
+                                <ion-icon name="shield-half-outline"></ion-icon>
+                            </div>
+
+                            <div class="service-content-box">
+                                <h4 class="h4 service-item-title">Red Team Operations</h4>
+                                <p class="service-item-text">Penetrations testing websites, infrastructure, and API's Fortune 500 companies.</p>
+                            </div>
+                        </li>
+
+                        <li class="service-item">
+                            <div class="service-icon-box">
+                                <ion-icon name="terminal-outline"></ion-icon>
+                            </div>
+
+                            <div class="service-content-box">
+                                <h4 class="h4 service-item-title">Software Development</h4>
+                                <p class="service-item-text">Building production-grade applications and developer tools. Full-stack development with TypeScript, Rust, and modern frameworks.</p>
+                            </div>
+                        </li>
+
+                        <li class="service-item">
+                            <div class="service-icon-box">
+                                <ion-icon name="construct-outline"></ion-icon>
+                            </div>
+
+                            <div class="service-content-box">
+                                <h4 class="h4 service-item-title">Security Research</h4>
+                                <p class="service-item-text">Analyzing emerging threats and attack trends impacting enterprises. Publishing research on practical security challenges and developing frameworks that help organizations measure and reduce risk.</p>
+                            </div>
+                        </li>
+
+                        <li class="service-item">
+                            <div class="service-icon-box">
+                                <ion-icon name="layers-outline"></ion-icon>
+                            </div>
+
+                            <div class="service-content-box">
+                                <h4 class="h4 service-item-title">Threat Modeling</h4>
+                                <p class="service-item-text">Systematically identifying and prioritizing potential threats before they become vulnerabilities. Analyzing attack surfaces, trust boundaries, and developing comprehensive mitigation strategies.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+
+
+            </article>
+
+            <article class="portfolio " data-page="portfolio">
+                <header>
+                    <h2 class="h2 article-title">Portfolio</h2>
+                </header>
+
+                <section class="projects">
+                    <ul class="filter-list">
+                        <!-- Filter buttons will be populated dynamically from portfolio.js -->
+                        <li class="filter-item"><button class="active" data-filter-btn>All</button></li>
+                    </ul>
+
+                    <div class="filter-select-box">
+                        <button class="filter-select " data-select>
+                            <div class="select-value" data-select-value>Select Category</div>
+
+                            <div class="select-icon">
+                                <ion-icon name="chevron-down"></ion-icon>
+                            </div>
+                        </button>
+
+                        <ul class="select-list">
+                            <!-- Select options will be populated dynamically from portfolio.js -->
+                            <li class="select-item"><button data-select-item>All</button></li>
+                        </ul>
+                    </div>
+
+                    <ul class="project-list">
+                        <!-- Projects will be loaded dynamically from portfolio.js -->
+                    </ul>
+                </section>
+            </article>
+
+            <article class="blog " data-page="blog">
+                <header>
+                    <h2 class="h2 article-title">Blog</h2>
+                </header>
+
+                <section class="blog-posts">
+                    <ul class="blog-posts-list">
+                        <!-- Blog posts will be loaded dynamically from blog.js -->
+                    </ul>
+                </section>
+            </article>
+
+        </div>
+    </main>
+
+    <script src="portfolio.js"></script>
+    <script src="blog.js"></script>
+    <script src="script.js"></script>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
