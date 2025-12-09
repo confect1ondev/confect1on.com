@@ -1,6 +1,22 @@
 const portfolioProjects = [
     {
         year: 2025,
+        title: "Collar",
+        category: "Phone-Based Remote Desktop Control System",
+        filterCategory: "development",
+        icon: "laptop-outline",
+        description: "Collar is a three-component system for remotely monitoring and sending pre-defined commands to a computer from a phone or any web browser.",
+        stats: ["Real-time WebSocket", "Extensible Scripts"],
+        tech: ["Rust", "React", "TypeScript"],
+        images: [
+            { src: "images/collar.png", alt: "Collar" },
+        ],
+        links: [
+            { icon: "logo-github", text: "GitHub", url: "https://github.com/confect1ondev/Collar" }
+        ]
+    },
+    {
+        year: 2025,
         title: "Declaring Security: How Declarative Operating Systems Reduce Drift",
         category: "A Case Study in NixOS with Implications for Enterprise Fleets",
         filterCategory: "research",
@@ -19,6 +35,7 @@ const portfolioProjects = [
         category: "Nation-Building & Diplomacy Simulation in Video Game Servers",
         filterCategory: "development",
         icon: "globe-outline",
+        favorite: true,
         description: "Comprehensive API built in Rust for a Minecraft server, providing character lifecycle management, nation governance, emergent diplomacy, and a simulated player-driven economy. Statecraft enables complex nation-building and economic simulation within game servers. In addition to the ScAPI, a React frontend is deployed to facilitate interactions.",
         tech: ["Rust", "REST API", "Swagger", "Game Economy"],
         images: [
