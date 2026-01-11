@@ -1,5 +1,20 @@
 const portfolioProjects = [
     {
+        year: 2026,
+        title: "RB1 Single Reveal",
+        category: "A promotional website for Rachel Bochner's first album!",
+        filterCategory: "development",
+        icon: "laptop-outline",
+        description: "An interactive web application that gamified the reveal of the first RB1 song title through a code redemption system. Codes were sent out in letters to her top listeners of 2025 and could be input to reveal one letter at a time!",
+        tech: ["Rust", "React", "Nginx"],
+        images: [
+            { src: "images/rb1-single-reveal.png", alt: "RB1 Single Reveal" },
+        ],
+        links: [
+            { icon: "logo-github", text: "GitHub", url: "https://github.com/confect1ondev/RB1-Single-Reveal" }
+        ]
+    },
+    {
         year: 2025,
         title: "Collar",
         category: "Phone-Based Remote Desktop Control System",
