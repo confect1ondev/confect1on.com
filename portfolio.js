@@ -1,10 +1,23 @@
 const portfolioProjects = [
     {
         year: 2026,
+        title: "Free Range",
+        category: "PIN-Auth Door Unlock Proxy for the DoorBird Cloud API",
+        filterCategory: "development",
+        icon: "lock-open-outline",
+        description: "A lightweight Node.js web app that proxies the DoorBird cloud API behind PIN-based authentication. Affectionately framed as 'a glorified replay attack,' it lets apartment owners hand out PINs to guests or deliveries instead of babysitting their phone. Includes an admin panel, one-time guest PINs, per-IP rate limiting, a persistent event log, and PWA install support.",
+        stats: ["PIN Auth", "One-Time Guest PINs", "PWA"],
+        tech: ["Node.js", "Express", "SQLite", "Helmet", "PWA"],
+        links: [
+            { icon: "logo-github", text: "GitHub", url: "https://github.com/confect1ondev/free-range" }
+        ]
+    },
+    {
+        year: 2026,
         title: "RB1 Single Reveal",
         category: "A promotional website for Rachel Bochner's first album!",
         filterCategory: "development",
-        icon: "laptop-outline",
+        icon: "gift-outline",
         description: "An interactive web application that gamified the reveal of the first RB1 song title through a code redemption system. Codes were sent out in letters to her top listeners of 2025 and could be input to reveal one letter at a time!",
         tech: ["Rust", "React", "Nginx"],
         images: [
@@ -15,14 +28,15 @@ const portfolioProjects = [
         ]
     },
     {
-        year: 2025,
+        year: 2026,
         title: "Collar",
-        category: "Phone-Based Remote Desktop Control System",
+        category: "Remote control your computers from your phone with HomeKit integration",
         filterCategory: "development",
-        icon: "laptop-outline",
-        description: "Collar is a three-component system for remotely monitoring and sending pre-defined commands to a computer from a phone or any web browser.",
-        stats: ["Real-time WebSocket", "Extensible Scripts"],
-        tech: ["Rust", "React", "TypeScript"],
+        icon: "phone-portrait-outline",
+        favorite: true,
+        description: "A four-component system that turns any phone into a control panel for your machines: a Rust daemon on the device, a Rust API server on a VPS, a React web client, and an optional Homebridge plugin that exposes scripts to HomeKit. Phone↔server talks HTTPS while server↔daemon rides a WebSocket tunnel. Security in mind: per-device API keys, per-IP rate limiting, and a script model where commands are defined locally on the daemon so the server can never push arbitrary code.",
+        stats: ["Rust + React", "JWT + Per-Device Keys", "HomeKit Bridge", "Locally-Defined Scripts"],
+        tech: ["Rust", "React", "TypeScript", "WebSocket", "Homebridge", "Nginx"],
         images: [
             { src: "images/collar.png", alt: "Collar" },
         ],
@@ -64,11 +78,12 @@ const portfolioProjects = [
     {
         year: 2025,
         title: "Verbatim",
-        category: "Advanced Chat & Discord Integration for NeoForge",
+        category: "Advanced Game Chat & Discord Integration Mod w/ Cross-Platform Compatibility",
         filterCategory: "development",
         icon: "game-controller-outline",
-        description: "A Minecraft NeoForge server-side mod designed to enhance in-game communication by providing configurable chat channels, direct messaging, Discord integration, and more. Built to offer a flexible and powerful chat system suitable for various server types, especially those with roleplaying or community focus.",
-        tech: ["Java", "Forge", "NeoForge", "Discord API"],
+        favorite: true,
+        description: "A Java server-side mod designed to enhance in-game communication by providing configurable chat channels, direct messaging, Discord integration, and more. Built to offer a flexible and powerful chat system suitable for various server types, especially those with roleplaying or community focus.",
+        tech: ["Java", "Hytale", "Minecraft", "Fabric", "Paper", "Forge", "NeoForge", "Discord"],
         links: [
             { icon: "logo-github", text: "GitHub", url: "https://github.com/Landfall-SMP/Verbatim" }
         ]
@@ -81,7 +96,6 @@ const portfolioProjects = [
         icon: "settings-outline",
         description: "Personal NixOS setup with my entire system configuration as code. Fully reproducible, declarative system management ensuring consistent environments across machines.",
         tech: ["NixOS", "Nix", "Shell", "Infrastructure as Code"],
-        favorite: true,
         images: [
             { src: "https://raw.githubusercontent.com/confect1ondev/nixos/refs/heads/main/dotfiles.png", alt: "Lovergirl homepage" },
         ],
@@ -125,7 +139,7 @@ const portfolioProjects = [
         title: "Filing Saucer",
         category: "A file sharing server and API with a full web client",
         filterCategory: "development",
-        icon: "cube-outline",
+        icon: "cloud-upload-outline",
         description: "I developed this as a side project for myself. It is the third iteration of my personal file-sharing platform, now archived.",
         stats: ["150+ Commits"],
         tech: ["TypeScript", "Node.js", "Express"],

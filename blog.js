@@ -60,27 +60,102 @@ function parseRSSFeed(xmlText) {
     return posts;
 }
 
-// Load RSS feed 
-async function loadRSSFeed() {
-    try {
-        // Try to fetch the RSS feed through a CORS proxy
-        // Using cors-anywhere or allorigins as proxy services
-        const proxyUrl = 'https://api.allorigins.win/raw?url=';
-        const feedUrl = 'https://kxra.substack.com/feed';
-        
-        const response = await fetch(proxyUrl + encodeURIComponent(feedUrl));
-        if (response.ok) {
-            const xmlText = await response.text();
-            blogPosts = parseRSSFeed(xmlText);
-            console.log('Loaded RSS feed:', blogPosts.length, 'posts');
-        } else {
-            throw new Error('Failed to fetch RSS feed');
-        }
-    } catch (error) {
-        console.log('Could not fetch RSS feed, using fallback data:', error);
+const FEED_URL = 'https://kxra.substack.com/feed';
+const CACHE_KEY = 'blogPostsCacheV1';
+const CACHE_TTL_MS = 10 * 60 * 1000; // 10 minutes
+const FETCH_TIMEOUT_MS = 6000;
+
+// Fetch with timeout and abort support
+function fetchWithTimeout(url, { signal, timeout = FETCH_TIMEOUT_MS } = {}) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort('timeout'), timeout);
+    if (signal) signal.addEventListener('abort', () => controller.abort(signal.reason));
+    return fetch(url, { signal: controller.signal }).finally(() => clearTimeout(timer));
+}
+
+// Source adapters: each returns parsed posts[] or throws
+const sources = [
+    // rss2json: returns JSON directly, fastest and most reliable when available
+    async (signal) => {
+        const url = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(FEED_URL)}`;
+        const res = await fetchWithTimeout(url, { signal });
+        if (!res.ok) throw new Error(`rss2json ${res.status}`);
+        const data = await res.json();
+        if (data.status !== 'ok' || !Array.isArray(data.items)) throw new Error('rss2json bad payload');
+        return data.items.map(item => ({
+            title: item.title || '',
+            link: item.link || '',
+            description: extractDescription(item.content || item.description || ''),
+            date: new Date(item.pubDate),
+            tags: Array.isArray(item.categories) ? item.categories : []
+        }));
+    },
+    // allorigins fallback (raw XML)
+    async (signal) => {
+        const url = `https://api.allorigins.win/raw?url=${encodeURIComponent(FEED_URL)}`;
+        const res = await fetchWithTimeout(url, { signal });
+        if (!res.ok) throw new Error(`allorigins ${res.status}`);
+        const xml = await res.text();
+        const posts = parseRSSFeed(xml);
+        if (!posts.length) throw new Error('allorigins empty');
+        return posts;
     }
-    
-    // Sort by date (newest first)
+];
+
+// Race all sources; first success wins, others get aborted
+function raceSources() {
+    const controllers = sources.map(() => new AbortController());
+    return new Promise((resolve, reject) => {
+        let pending = sources.length;
+        const errors = [];
+        sources.forEach((fetcher, i) => {
+            fetcher(controllers[i].signal)
+                .then(posts => {
+                    controllers.forEach((c, j) => { if (j !== i) c.abort('lost race'); });
+                    resolve(posts);
+                })
+                .catch(err => {
+                    errors.push(err);
+                    if (--pending === 0) reject(new AggregateError(errors, 'all sources failed'));
+                });
+        });
+    });
+}
+
+function readCache() {
+    try {
+        const raw = localStorage.getItem(CACHE_KEY);
+        if (!raw) return null;
+        const { ts, posts } = JSON.parse(raw);
+        if (Date.now() - ts > CACHE_TTL_MS) return null;
+        return posts.map(p => ({ ...p, date: new Date(p.date) }));
+    } catch { return null; }
+}
+
+function writeCache(posts) {
+    try {
+        localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), posts }));
+    } catch {}
+}
+
+async function loadRSSFeed() {
+    const cached = readCache();
+    if (cached && cached.length) {
+        blogPosts = cached;
+        // Refresh in the background so next visit has fresh data
+        raceSources().then(posts => {
+            writeCache(posts);
+        }).catch(() => {});
+    } else {
+        try {
+            const posts = await raceSources();
+            blogPosts = posts;
+            writeCache(posts);
+        } catch (error) {
+            console.warn('All blog feed sources failed:', error);
+        }
+    }
+
     blogPosts.sort((a, b) => b.date - a.date);
 }
 

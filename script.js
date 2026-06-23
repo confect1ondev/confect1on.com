@@ -11,7 +11,7 @@ function init() {
     // Randomly select avatar
     const avatarImg = document.getElementById('user-avatar');
     if (avatarImg) {
-        const avatars = ['avatar.png', 'avatar1.png', 'avatar2.png', 'avatar3.png'];
+        const avatars = ['avatar0.png', 'avatar1.png'];
         const randomAvatar = avatars[Math.floor(Math.random() * avatars.length)];
         avatarImg.src = randomAvatar;
     }
@@ -90,7 +90,16 @@ for (let i = 0; i < filterBtn.length; i++) {
 // Project card listeners are now handled in portfolio.js
 
 
-// Enabling Page Navigation 
+// Click-to-expand for contribution rows
+document.querySelectorAll('.contribution-item').forEach(item => {
+    item.addEventListener('click', function(e) {
+        if (e.target.closest('a')) return; // let inner links navigate
+        item.classList.toggle('expanded');
+    });
+});
+
+
+// Enabling Page Navigation
 
 const navigationLinks = document.querySelectorAll('[data-nav-link]');
 const pages = document.querySelectorAll('[data-page]');
