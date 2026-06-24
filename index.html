@@ -187,8 +187,9 @@
                     <h2 class="h2 article-title">Portfolio</h2>
                 </header>
 
+                <div class="research-contributions-row">
                 <section class="contributions">
-                    <h3 class="section-title">Selected Open-Source Contributions</h3>
+                    <h3 class="section-title">Contributions</h3>
                     <ul class="contributions-list">
                         <li class="contribution-item">
                             <div class="contribution-icon">
@@ -232,26 +233,40 @@
                     </ul>
                 </section>
 
+                <section class="research">
+                    <h3 class="section-title">Research</h3>
+                    <ul class="research-list">
+                        <!-- Research projects will be loaded dynamically from portfolio.js -->
+                    </ul>
+                </section>
+                </div>
+
                 <section class="projects">
                     <h3 class="section-title">Projects</h3>
-                    <ul class="filter-list">
-                        <!-- Filter buttons will be populated dynamically from portfolio.js -->
-                        <li class="filter-item"><button class="active" data-filter-btn>All</button></li>
-                    </ul>
+                    <div class="filter-row">
+                        <div class="filter-select-box filter-year-box">
+                            <button class="filter-select" data-select="year">
+                                <div class="select-value" data-select-value="year">All Years</div>
+                                <div class="select-icon">
+                                    <ion-icon name="chevron-down"></ion-icon>
+                                </div>
+                            </button>
+                            <ul class="select-list" data-select-list="year">
+                                <!-- Year options populated by portfolio.js -->
+                            </ul>
+                        </div>
 
-                    <div class="filter-select-box">
-                        <button class="filter-select " data-select>
-                            <div class="select-value" data-select-value>Select Category</div>
-
-                            <div class="select-icon">
-                                <ion-icon name="chevron-down"></ion-icon>
-                            </div>
-                        </button>
-
-                        <ul class="select-list">
-                            <!-- Select options will be populated dynamically from portfolio.js -->
-                            <li class="select-item"><button data-select-item>All</button></li>
-                        </ul>
+                        <div class="filter-select-box filter-client-box">
+                            <button class="filter-select" data-select="client">
+                                <div class="select-value" data-select-value="client">All Clients</div>
+                                <div class="select-icon">
+                                    <ion-icon name="chevron-down"></ion-icon>
+                                </div>
+                            </button>
+                            <ul class="select-list" data-select-list="client">
+                                <!-- Client options populated by portfolio.js -->
+                            </ul>
+                        </div>
                     </div>
 
                     <ul class="project-list">
